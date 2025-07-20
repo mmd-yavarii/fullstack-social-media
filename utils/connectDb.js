@@ -9,7 +9,7 @@ export async function connectDb() {
 }
 
 // connect to database in api routes
-export async function onnectDBForAPI(res) {
+export async function connectDBForAPI(res) {
     try {
         await connectDb();
     } catch (error) {

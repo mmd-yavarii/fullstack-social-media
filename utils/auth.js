@@ -8,13 +8,13 @@ export async function hashPassword(password) {
 }
 
 // verify user password
-export async function hashPassword(password, hashedPassword) {
+export async function verifyPassword(password, hashedPassword) {
     const result = await compare(password, hashedPassword);
     return result;
 }
 
 // verify user token
-export function verityToken(token) {
+export function verifyToken(token) {
     if (!token) return false;
     try {
         return verify(token, process.env.JWT_SECRET);

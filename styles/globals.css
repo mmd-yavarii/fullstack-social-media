@@ -1,6 +1,8 @@
 :root {
     --background: #ffffff;
     --foreground: #171717;
+    --border: #e3e3e3;
+    --them: #1e65ff;
 }
 
 html,
@@ -26,4 +28,30 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+input {
+    border: 1px solid var(--border);
+    outline: none;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.invalidInp:focus {
+    transition: all 0.3s;
+    background-color: #ff00000c;
+    color: red;
+    border-color: red;
+}
+.validInp:focus {
+    transition: all 0.3s;
+    color: green;
+    background-color: #0080000a;
+    border-color: green;
+}
+.validInp:focus::placeholder {
+    color: green;
+}
+.invalidInp:focus::placeholder {
+    color: red;
 }
