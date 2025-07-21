@@ -49,6 +49,12 @@ const UserSchema = new Schema({
         ref: 'Users',
         default: [],
     },
+
+    savedPosts: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Posts',
+        default: [],
+    },
 });
 
 const Users = models.Users || model('Users', UserSchema);

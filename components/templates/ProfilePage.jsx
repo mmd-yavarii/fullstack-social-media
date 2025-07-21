@@ -17,46 +17,48 @@ function ProfilePage({ userInfo, uerPosts }) {
     const router = useRouter();
 
     return (
-        <div>
-            <div className={styles.profileImage}>
-                {/* profile and some images */}
-                <div className={styles.controls}>
-                    <button onClick={() => router.back()}>
-                        <IoArrowBack size="1.5rem" />
-                    </button>
+        <div className={styles.container}>
+            <div>
+                <div className={styles.profileImage}>
+                    {/* profile and some images */}
+                    <div className={styles.controls}>
+                        <button onClick={() => router.back()}>
+                            <IoArrowBack size="1.5rem" />
+                        </button>
 
-                    <p>{username}</p>
+                        <p>{username}</p>
 
-                    <Link href="">
-                        <VscSettings size="1.5rem" />
-                    </Link>
+                        <Link href="/profile/setting">
+                            <VscSettings size="1.5rem" />
+                        </Link>
+                    </div>
+
+                    <Image src={image} alt="Profile Image" fill sizes="(max-width: 768px) 100vw, 410px" />
+
+                    {/* followers and posts ionfo */}
+                    <div className={`${styles.profileInfo} blur`}>
+                        <div>
+                            <span>Followers</span>
+                            <span>{followers.length}</span>
+                        </div>
+
+                        <div>
+                            <span>Following</span>
+                            <span>{following.length}</span>
+                        </div>
+
+                        <div>
+                            <span>Posts</span>
+                            <span>{uerPosts.length}</span>
+                        </div>
+                    </div>
                 </div>
 
-                <Image src={image} alt="Profile Image" fill sizes="(max-width: 768px) 100vw, 410px" />
-
-                {/* followers and posts ionfo */}
-                <div className={`${styles.profileInfo} blur`}>
-                    <div>
-                        <span>Followers</span>
-                        <span>{followers.length}</span>
-                    </div>
-
-                    <div>
-                        <span>Following</span>
-                        <span>{following.length}</span>
-                    </div>
-
-                    <div>
-                        <span>Posts</span>
-                        <span>{uerPosts.length}</span>
-                    </div>
+                {/* bio and name */}
+                <div className={styles.personamInfo}>
+                    <p style={{ fontWeight: '900', fontSize: '1.1rem' }}> {fullName}</p>
+                    <p>{bio}</p>
                 </div>
-            </div>
-
-            {/* bio and name */}
-            <div className={styles.personamInfo}>
-                <p style={{ fontWeight: '900', fontSize: '1.1rem' }}> {fullName}</p>
-                <p>{bio}</p>
             </div>
 
             {/* posts */}

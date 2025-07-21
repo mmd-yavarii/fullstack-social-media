@@ -1,3 +1,8 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 .profileImage {
     position: relative;
     width: 100%;
@@ -79,4 +84,42 @@
 }
 .shareNewPost a {
     color: var(--them);
+}
+
+@media (min-width: 800px) {
+    .profileImage {
+        width: 500px;
+    }
+
+    .container {
+        flex-direction: row-reverse;
+        justify-content: center;
+    }
+}
+
+/* settings */
+.settingContainer > * {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--foreground);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.settingContainer > *:first-child {
+    margin-top: 10px;
+}
+.settingContainer > *:last-child {
+    border: none;
+}
+.logoutBtn {
+    color: #f72b2a;
 }
