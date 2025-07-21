@@ -9,7 +9,7 @@
     --background: #141416;
     --foreground: #e4e4e4;
     --border: #27282d;
-    --them: #1e65ff;
+    --them: #f44336;
     --inp: #202125;
 }
 
@@ -39,7 +39,8 @@ a {
     text-decoration: none;
 }
 
-input {
+input,
+textarea {
     border: 1px solid var(--border);
     outline: none;
     padding: 10px;
@@ -75,6 +76,17 @@ input::placeholder {
     backdrop-filter: blur(17.3px);
     -webkit-backdrop-filter: blur(17.3px);
     border: 1px solid #ffffff33;
+}
+
+.backBtn {
+    direction: ltr;
+    padding: 20px;
+}
+.backBtn button {
+    background-color: transparent;
+    color: var(--forground);
+    border: none;
+    outline: none;
 }
 
 @media (max-width: 600px) {

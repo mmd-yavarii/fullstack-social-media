@@ -55,10 +55,16 @@ function ProfilePage({ userInfo, uerPosts }) {
                 </div>
 
                 {/* bio and name */}
-                <div className={styles.personamInfo}>
-                    <p style={{ fontWeight: '900', fontSize: '1.1rem' }}> {fullName}</p>
-                    <p>{bio}</p>
-                </div>
+                {bio.length || fullName.length ? (
+                    <div className={styles.personamInfo}>
+                        <p style={{ fontWeight: '900', fontSize: '1.1rem' }}> {fullName}</p>
+                        <p>{bio}</p>
+                    </div>
+                ) : (
+                    <Link href="/profile/edit-profile" className={styles.editUserPage}>
+                        برای تکمیل اطلاعات کلیک کنید
+                    </Link>
+                )}
             </div>
 
             {/* posts */}
@@ -68,7 +74,7 @@ function ProfilePage({ userInfo, uerPosts }) {
                 <div className={styles.shareNewPost}>
                     <BiAt size="2rem" />
                     <p>هنوز پستی وجود ندارد !</p>
-                    <Link href="">ایجاد اولین پست</Link>
+                    <Link href="">برای ایجاد اولین پسن کلیک کنید</Link>
                 </div>
             )}
         </div>

@@ -7,6 +7,8 @@ import { TbBookmarks } from 'react-icons/tb';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 
+import { IoMdArrowRoundBack } from 'react-icons/io';
+
 function ProfileSettingPage() {
     const router = useRouter();
 
@@ -22,6 +24,12 @@ function ProfileSettingPage() {
 
     return (
         <div className={styles.settingContainer}>
+            <div className="backBtn">
+                <button onClick={() => router.back()}>
+                    <IoMdArrowRoundBack size="1.5rem" />
+                </button>
+            </div>
+
             <Link href="/profile/edit-profile">
                 <LiaUserEditSolid size="1.5rem" />
                 <span>ویرایش اطلاعات کاربری</span>

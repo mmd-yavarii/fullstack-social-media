@@ -97,6 +97,16 @@
     }
 }
 
+.editUserPage {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--them);
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+}
+
 /* settings */
 .settingContainer > * {
     display: flex;

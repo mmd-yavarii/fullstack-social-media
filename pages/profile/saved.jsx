@@ -3,9 +3,23 @@ import EmptyPage from '@/components/templates/EmptyPage';
 import Posts from '@/models/Posts';
 import Users from '@/models/Users';
 import { verifyToken } from '@/utils/auth';
+import { useRouter } from 'next/router';
+
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 export default function SavedPosts({ bookmaredPosts }) {
-    return bookmaredPosts.length ? <PostList posts={bookmaredPosts} /> : <EmptyPage />;
+    const router = useRouter();
+
+    return (
+        <>
+            <div className="backBtn">
+                <button onClick={() => router.back()}>
+                    <IoMdArrowRoundBack size="1.5rem" />
+                </button>
+            </div>
+            {bookmaredPosts.length ? <PostList posts={bookmaredPosts} /> : <EmptyPage />}
+        </>
+    );
 }
 
 export async function getServerSideProps(context) {
