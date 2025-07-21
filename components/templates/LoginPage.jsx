@@ -39,22 +39,22 @@ function LoginPage() {
         });
         const result = await responsse.json();
         alert(result.message);
-        if (responsse.ok) router.replace('/');
+        if (responsse.ok) router.replace('/profile');
         setIsLoading(false);
     }
 
     return (
         <div className={styles.container}>
             <div>
-                <p>Login</p>
-                <span>Enter your account and enjoy your life</span>
+                <p>ورود به حساب کاربری</p>
+                <span>به حساب کاربرتان وارد شوید و از اشتراک گذارری ایده هایتان لذت ببرید</span>
             </div>
 
             <form onSubmit={logInHandler}>
                 <input
                     type="text"
                     className={usernameValidation ? 'validInp' : 'invalidInp'}
-                    placeholder="Enter username"
+                    placeholder="نام کاربرری خود را وارد کنید"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -63,15 +63,15 @@ function LoginPage() {
                 <input
                     type="test"
                     className={passwordValidation ? 'validInp' : 'invalidInp'}
-                    placeholder="Enter password"
+                    placeholder="کلمه عبور خود را وارد کنید"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
 
-                <button type={'submit'}>{isLoading ? <PulseLoader size="0.5rem" color="#fff" /> : 'Login'}</button>
+                <button type={'submit'}>{isLoading ? <PulseLoader size="0.5rem" color="#fff" /> : 'ورود به حساب'}</button>
 
-                <Link href="/auth/signup">Create account</Link>
+                <Link href="/auth/signup">ایجاد حساب کاربری</Link>
             </form>
         </div>
     );

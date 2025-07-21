@@ -33,19 +33,22 @@ const UserSchema = new Schema({
         default: '',
     },
 
-    following: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-        },
-    ],
+    image: {
+        type: String,
+        required: true,
+    },
 
-    followers: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-        },
-    ],
+    following: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Users',
+        default: [],
+    },
+
+    followers: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Users',
+        default: [],
+    },
 });
 
 const Users = models.Users || model('Users', UserSchema);

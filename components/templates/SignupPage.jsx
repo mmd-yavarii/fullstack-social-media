@@ -44,22 +44,22 @@ function SignupPage() {
         });
         const result = await responsse.json();
         alert(result.message);
-        if (responsse.ok) router.replace('/');
+        if (responsse.ok) router.replace('/profile');
         setIsLoading(false);
     }
 
     return (
         <div className={styles.container}>
             <div>
-                <p>Signup</p>
-                <span>Join us and express yourself freely</span>
+                <p>ایجاد حساب کاربری</p>
+                <span>به ما بپیوند و از اشتراک‌گذاری ایده‌هات لذت ببر</span>
             </div>
 
             <form onSubmit={signInHandler}>
                 <input
                     type="text"
                     className={usernameValidation ? 'validInp' : 'invalidInp'}
-                    placeholder="Enter username"
+                    placeholder="نام کاربری خود را وارد کنید"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -68,7 +68,7 @@ function SignupPage() {
                 <input
                     type="text"
                     className={emailValidation ? 'validInp' : 'invalidInp'}
-                    placeholder="Enter email"
+                    placeholder="ایمیل خود را وارد کنید"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -77,7 +77,7 @@ function SignupPage() {
                 <input
                     type="test"
                     className={passwordValidation ? 'validInp' : 'invalidInp'}
-                    placeholder="Enter password"
+                    placeholder="کلمه عبور خود را وارد کنید"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -86,14 +86,14 @@ function SignupPage() {
                 <input
                     type="test"
                     className={password === rePassword ? 'validInp' : 'invalidInp'}
-                    placeholder="Enter password again"
+                    placeholder="کلمه عبور خود را مجدد وارد کنید"
                     value={rePassword}
                     onChange={(e) => setRePassword(e.target.value)}
                 />
 
-                <button type="submit">{isLoading ? <PulseLoader size="0.5rem" color="#fff" /> : 'Sign Up'}</button>
+                <button type="submit">{isLoading ? <PulseLoader size="0.5rem" color="#fff" /> : 'ایجاد حساب'}</button>
 
-                <Link href="/auth/login"> Already have account</Link>
+                <Link href="/auth/login">حساب ایجاد شده دارم</Link>
             </form>
         </div>
     );

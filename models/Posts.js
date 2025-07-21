@@ -7,6 +7,16 @@ const PostSchema = new Schema({
         required: true,
     },
 
+    authorusername: {
+        type: String,
+        required: true,
+    },
+
+    authorimage: {
+        type: String,
+        default: 'public/profiles/2.jpg',
+    },
+
     content: {
         type: String,
         required: true,

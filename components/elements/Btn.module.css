@@ -1,0 +1,17 @@
+.btn {
+    background-color: transparent;
+    display: flex;
+    border: none;
+    outline: none;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--foreground);
+}
+
+.btn span {
+    margin: 0 6px;
+}
+
+.liked {
+    color: var(--them);
+}

@@ -27,7 +27,9 @@ export default async function handler(req, res) {
 
         // sign up
         const hashedPass = await hashPassword(password);
-        const newUser = await Users.create({ username, email, password: hashedPass });
+        const userImage = `/profiles/${Math.floor(Math.random() * 8) + 1}.webp`;
+
+        const newUser = await Users.create({ username, email, password: hashedPass, image: userImage });
 
         // auto sign in
         const token = sign({ email, _id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '24h' });

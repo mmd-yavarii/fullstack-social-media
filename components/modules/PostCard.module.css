@@ -1,0 +1,47 @@
+.container {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--inp);
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.postInfo {
+    display: flex;
+    gap: 20px;
+    direction: ltr;
+}
+.postInfo img {
+    border-radius: 50%;
+}
+
+.postInfo div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: 900;
+}
+.postInfo div p {
+    font-size: 1.2rem;
+}
+
+.postInfo div span {
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+.mainPostTest {
+    margin: 10px 0;
+}
+
+.controlers {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    opacity: 0.6;
+    direction: ltr;
+}
+.controlers button {
+    display: flex;
+    gap: 5px;
+}
