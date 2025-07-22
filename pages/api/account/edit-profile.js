@@ -1,3 +1,5 @@
+import Comments from '@/models/Comments';
+import Posts from '@/models/Posts';
 import Users from '@/models/Users';
 import { hashPassword, verifyPassword, verifyToken } from '@/utils/auth';
 import { connectDBForAPI } from '@/utils/connectDb';
@@ -15,8 +17,8 @@ export default async function handler(req, res) {
     try {
         const user = await Users.findById(verifyedToken._id);
 
-        const { bio, fullName, email, currentPassword, newPassword } = req.body;
-        const payload = { bio, fullName, email };
+        const { bio, fullName, email, image, currentPassword, newPassword } = req.body;
+        const payload = { bio, fullName, email, image };
 
         // email validation
         if (!emailRegex.test(email)) return res.status(422).json({ status: 'failed', message: 'email is not valid' });
@@ -33,6 +35,8 @@ export default async function handler(req, res) {
 
         // set edits
         await Users.updateOne({ _id: user._id }, { $set: { ...payload } });
+        await Posts.updateMany({ author: user._id }, { $set: { authorimage: image } });
+        await Comments.updateMany({ author: user._id }, { $set: { authorimage: image } });
         res.status(200).json({ status: 'success', message: 'profile edited successfully' });
     } catch (error) {
         console.log(error);

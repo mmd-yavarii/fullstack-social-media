@@ -1,10 +1,20 @@
 import mongoose, { Schema, models, model } from 'mongoose';
 
 const CommentsSchema = new Schema({
-    userId: {
+    author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
         required: true,
+    },
+
+    authorusername: {
+        type: String,
+        required: true,
+    },
+
+    authorimage: {
+        type: String,
+        default: '',
     },
 
     content: {

@@ -14,7 +14,7 @@ const PostSchema = new Schema({
 
     authorimage: {
         type: String,
-        default: 'public/profiles/2.jpg',
+        default: '',
     },
 
     content: {

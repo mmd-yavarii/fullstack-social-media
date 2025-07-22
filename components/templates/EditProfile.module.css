@@ -29,4 +29,28 @@
     display: flex;
     align-items: center;
     gap: 10px;
+
+    padding: 10px;
+    border-top: 1px solid var(--border);
+}
+
+.changeImgSession {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.changeImgSession img {
+    transition: all 0.3s;
+    border-radius: 15px;
+}
+
+.img {
+    border-radius: 15px;
+    opacity: 0.5;
+    border: 2px solid transparent;
+}
+.selectedImg {
+    opacity: 1;
+    border: 2px solid var(--them);
 }

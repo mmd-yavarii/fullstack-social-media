@@ -15,20 +15,26 @@ function EditProfile({ userInfo }) {
     const { bio, fullName, image, email } = userInfo;
     const [isLoading, setIsLoading] = useState(false);
     const [isChangePasssword, setIsChangePassword] = useState(false);
+    const [isChangeImg, setIsChangeImg] = useState(false);
 
     const [form, setForm] = useState({
         bio: bio,
         fullName: fullName,
-        image: image,
         email: email,
         currentPassword: '',
         newPassword: '',
+        image: image,
     });
 
     // change inputs handler
     function changeHandler(event) {
         const { name, value } = event.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
+        if (name === 'image') {
+            const selectedImage = event.target.dataset.value;
+            setForm((prev) => ({ ...prev, image: selectedImage }));
+        } else {
+            setForm((prev) => ({ ...prev, [name]: value }));
+        }
     }
 
     // submit edit and chanege info handler
@@ -90,10 +96,10 @@ function EditProfile({ userInfo }) {
                 </div>
 
                 {/* edit password session */}
-                <span className={styles.changePassBtn} onClick={() => setIsChangePassword(!isChangePasssword)}>
+                <session className={styles.changePassBtn} onClick={() => setIsChangePassword(!isChangePasssword)}>
                     <span>تغیر کلمه عبور</span>
                     {isChangePasssword ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
-                </span>
+                </session>
 
                 {isChangePasssword && (
                     <>
@@ -123,6 +129,26 @@ function EditProfile({ userInfo }) {
                             />
                         </div>
                     </>
+                )}
+                {/* chamge prile image session */}
+                <session className={styles.changePassBtn} onClick={() => setIsChangeImg(!isChangeImg)}>
+                    <span>تغیر عکس پروفایل</span>
+                    {isChangeImg ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
+                </session>
+                {isChangeImg && (
+                    <section className={styles.changeImgSession}>
+                        {Array.from({ length: 8 }, (_, i) => (
+                            <img
+                                key={i}
+                                src={`/profiles/${i + 1}.webp`}
+                                className={form.image === `/profiles/${i + 1}.webp` ? styles.selectedImg : styles.img}
+                                width="100"
+                                onClick={changeHandler}
+                                name="image"
+                                data-value={`/profiles/${i + 1}.webp`}
+                            />
+                        ))}
+                    </section>
                 )}
 
                 <button type={'submit'}>{isLoading ? <PulseLoader size="0.5rem" color="#fff" /> : 'اعمال تغیرات'}</button>
