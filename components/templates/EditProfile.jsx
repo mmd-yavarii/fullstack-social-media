@@ -9,8 +9,11 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 import { IoIosArrowDropdown, IoIosArrowDropup } from 'react-icons/io';
 
 import { PulseLoader } from 'react-spinners';
+import BtnLoader from '../elements/BtnLoader';
+import { useAlert } from '../modules/AlertProvider';
 
 function EditProfile({ userInfo }) {
+    const showAlert = useAlert();
     const router = useRouter();
     const { bio, fullName, image, email } = userInfo;
     const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +45,7 @@ function EditProfile({ userInfo }) {
         event.preventDefault();
 
         if (!emailRegex.test(form.email)) {
-            alert('ایمیل معتبر نیست');
+            showAlert('failed', 'ایمیل معتبر نیست');
             return;
         }
 
@@ -58,7 +61,7 @@ function EditProfile({ userInfo }) {
             },
         });
         const result = await response.json();
-        alert(result.message);
+        showAlert(result.status, result.message);
         if (response.ok) router.back();
         setIsLoading(false);
     }
@@ -96,10 +99,10 @@ function EditProfile({ userInfo }) {
                 </div>
 
                 {/* edit password session */}
-                <session className={styles.changePassBtn} onClick={() => setIsChangePassword(!isChangePasssword)}>
+                <span className={styles.changePassBtn} onClick={() => setIsChangePassword(!isChangePasssword)}>
                     <span>تغیر کلمه عبور</span>
                     {isChangePasssword ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
-                </session>
+                </span>
 
                 {isChangePasssword && (
                     <>
@@ -131,12 +134,12 @@ function EditProfile({ userInfo }) {
                     </>
                 )}
                 {/* chamge prile image session */}
-                <session className={styles.changePassBtn} onClick={() => setIsChangeImg(!isChangeImg)}>
+                <span className={styles.changePassBtn} onClick={() => setIsChangeImg(!isChangeImg)}>
                     <span>تغیر عکس پروفایل</span>
                     {isChangeImg ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
-                </session>
+                </span>
                 {isChangeImg && (
-                    <section className={styles.changeImgSession}>
+                    <span className={styles.changeImgSession}>
                         {Array.from({ length: 8 }, (_, i) => (
                             <img
                                 key={i}
@@ -148,10 +151,10 @@ function EditProfile({ userInfo }) {
                                 data-value={`/profiles/${i + 1}.webp`}
                             />
                         ))}
-                    </section>
+                    </span>
                 )}
 
-                <button type={'submit'}>{isLoading ? <PulseLoader size="0.5rem" color="#fff" /> : 'اعمال تغیرات'}</button>
+                <BtnLoader type="submit" isLoading={isLoading} content="اعمال تغیرات" />
             </form>
         </>
     );

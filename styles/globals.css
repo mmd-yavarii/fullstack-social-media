@@ -89,6 +89,18 @@ input::placeholder {
     outline: none;
 }
 
+.btn-loader {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    color: #ffff;
+    background-color: var(--them);
+    font-weight: 900;
+    margin-top: 30px;
+    border: none;
+    outline: none;
+}
+
 @media (max-width: 600px) {
     button,
     session,

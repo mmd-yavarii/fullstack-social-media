@@ -31,17 +31,6 @@
     max-width: 300px;
 }
 
-.container button {
-    background-color: var(--them);
-    color: #fff;
-    font-weight: 900;
-    border: none;
-    outline: none;
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 15px;
-    margin-bottom: 5px;
-}
 .container a {
     opacity: 0.6;
     text-align: center;

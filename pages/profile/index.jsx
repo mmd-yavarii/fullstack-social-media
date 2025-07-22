@@ -3,8 +3,8 @@ import Posts from '@/models/Posts';
 import Users from '@/models/Users';
 import { verifyToken } from '@/utils/auth';
 
-export default function Profile({ userInfo, uerPosts }) {
-    return <ProfilePage userInfo={userInfo} uerPosts={uerPosts} />;
+export default function Profile({ userInfo, userPosts }) {
+    return <ProfilePage userInfo={userInfo} userPosts={userPosts} />;
 }
 
 // validate user and get it's info
@@ -25,20 +25,10 @@ export async function getServerSideProps(context) {
         const user = await Users.findById(verifyedToken._id);
         const posts = await Posts.find({ author: user._id });
 
-        // if user is not that user who requested
-        if (user._id.toString() !== verifyedToken._id.toString()) {
-            return {
-                redirect: {
-                    destination: '/auth/login',
-                    permanent: false,
-                },
-            };
-        }
-
         return {
             props: {
                 userInfo: JSON.parse(JSON.stringify(user)),
-                uerPosts: JSON.parse(JSON.stringify(posts)),
+                userPosts: JSON.parse(JSON.stringify(posts)),
             },
         };
     } catch {

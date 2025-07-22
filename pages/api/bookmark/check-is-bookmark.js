@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     const { token } = req.cookies;
     const verifyedToken = verifyToken(token);
     if (!verifyedToken) {
-        return res.status(401).json({ status: 'failed', message: 'Unauthorized' });
+        return res.status(401).json({ status: 'failed', message: 'دسترسی غیرمجاز' });
     }
 
     try {
@@ -21,6 +21,6 @@ export default async function handler(req, res) {
         return res.status(200).json({ status: 'success', isBookmarked: result });
     } catch (error) {
         console.log(error);
-        return res.status(422).json({ status: 'failed', message: 'request is not valid' });
+        return res.status(422).json({ status: 'failed', message: 'درخواست معتبر نیست' });
     }
 }

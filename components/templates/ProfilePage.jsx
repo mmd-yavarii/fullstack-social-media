@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PostList from '../modules/PostList';
 
-function ProfilePage({ userInfo, uerPosts }) {
+function ProfilePage({ userInfo, userPosts }) {
     const { username, bio, followers, following, fullName, image } = userInfo;
 
     const router = useRouter();
@@ -49,7 +49,7 @@ function ProfilePage({ userInfo, uerPosts }) {
 
                         <div>
                             <span>Posts</span>
-                            <span>{uerPosts.length}</span>
+                            <span>{userPosts.length}</span>
                         </div>
                     </div>
                 </div>
@@ -68,13 +68,13 @@ function ProfilePage({ userInfo, uerPosts }) {
             </div>
 
             {/* posts */}
-            {uerPosts.length ? (
-                <PostList posts={uerPosts} />
+            {userPosts.length ? (
+                <PostList posts={userPosts} />
             ) : (
                 <div className={styles.shareNewPost}>
                     <BiAt size="2rem" />
                     <p>هنوز پستی وجود ندارد !</p>
-                    <Link href="">برای ایجاد اولین پسن کلیک کنید</Link>
+                    <Link href="/new-post">برای ایجاد اولین پسن کلیک کنید</Link>
                 </div>
             )}
         </div>

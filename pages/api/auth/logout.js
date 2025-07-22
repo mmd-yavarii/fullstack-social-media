@@ -10,14 +10,14 @@ export default async function handler(req, res) {
     // logged in validation
     const { token } = req.cookies;
     const verifyedToken = verifyToken(token);
-    if (!verifyedToken) return res.status(422).json({ status: 'failed', message: 'request is not valid' });
+    if (!verifyedToken) return res.status(422).json({ status: 'failed', message: 'درخواست معتبر نیست' });
 
     try {
         // validation youser to access for logout
         const user = await Users.findOne({ _id: verifyedToken._id }, { email: 1 });
-        if (!user) return res.status(422).json({ status: 'failed', message: 'user not found' });
+        if (!user) return res.status(422).json({ status: 'failed', message: 'کاربر پیدا نشد' });
 
-        if (user._id.toString() !== verifyedToken._id.toString()) return res.status(422).json({ status: 'failed', message: 'request is not valid' });
+        if (user._id.toString() !== verifyedToken._id.toString()) return res.status(422).json({ status: 'failed', message: 'درخواست معتبر نیست' });
 
         // log out logic
         const cookie = serialize('token', '', {
@@ -25,9 +25,9 @@ export default async function handler(req, res) {
             httpOnly: true,
             maxAge: 0,
         });
-        res.status(200).setHeader('Set-Cookie', cookie).json({ status: 'success', message: 'logged out successfuly' });
+        res.status(200).setHeader('Set-Cookie', cookie).json({ status: 'success', message: 'خروج از حساب با موفقیت انجام شد' });
     } catch (error) {
         console.log(error);
-        return res.status(422).json({ status: 'failed', message: 'request is not valid' });
+        return res.status(422).json({ status: 'failed', message: 'درخواست معتبر نیست' });
     }
 }

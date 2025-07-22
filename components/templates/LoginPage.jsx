@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import { PulseLoader } from 'react-spinners';
-
 import styles from './login_signin.module.css';
 import Link from 'next/link';
 import { passwordRegex, usernameRegex } from '@/utils/regexes';
 import { useRouter } from 'next/router';
+import BtnLoader from '../elements/BtnLoader';
+import { useAlert } from '../modules/AlertProvider';
 
 function LoginPage() {
+    const showAlert = useAlert();
     const router = useRouter();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +26,7 @@ function LoginPage() {
         if (isLoading) return;
 
         if (!usernameValidation || !passwordValidation) {
-            alert('Please fill in inputs carefully');
+            showAlert('failed', 'لطفا اینپوت ها را به دقت پر کنید');
             return;
         }
 
@@ -38,7 +39,7 @@ function LoginPage() {
             },
         });
         const result = await responsse.json();
-        alert(result.message);
+        showAlert(result.status, result.message);
         if (responsse.ok) router.replace('/profile');
         setIsLoading(false);
     }
@@ -69,7 +70,7 @@ function LoginPage() {
                     required
                 />
 
-                <button type={'submit'}>{isLoading ? <PulseLoader size="0.5rem" color="#fff" /> : 'ورود به حساب'}</button>
+                <BtnLoader type="submit" isLoading={isLoading} content="ورود به حساب" />
 
                 <Link href="/auth/signup">ایجاد حساب کاربری</Link>
             </form>

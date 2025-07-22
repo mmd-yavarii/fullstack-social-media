@@ -5,10 +5,12 @@ import styles from './login_signin.module.css';
 import Link from 'next/link';
 import { emailRegex, passwordRegex, usernameRegex } from '@/utils/regexes';
 
-import { PulseLoader } from 'react-spinners';
 import { useRouter } from 'next/router';
+import BtnLoader from '../elements/BtnLoader';
+import { useAlert } from '../modules/AlertProvider';
 
 function SignupPage() {
+    const showAlert = useAlert();
     const router = useRouter();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -30,7 +32,7 @@ function SignupPage() {
         if (isLoading) return;
 
         if (password !== rePassword || !usernameValidation || !passwordValidation || !emailValidation) {
-            alert('Please fill in inputs carefully');
+            showAlert('failed', 'اینپوت ها را به دقت پر کنید');
             return;
         }
 
@@ -43,7 +45,7 @@ function SignupPage() {
             },
         });
         const result = await responsse.json();
-        alert(result.message);
+        showAlert(result.status, result.message);
         if (responsse.ok) router.replace('/profile');
         setIsLoading(false);
     }
@@ -91,7 +93,7 @@ function SignupPage() {
                     onChange={(e) => setRePassword(e.target.value)}
                 />
 
-                <button type="submit">{isLoading ? <PulseLoader size="0.5rem" color="#fff" /> : 'ایجاد حساب'}</button>
+                <BtnLoader type="submit" isLoading={isLoading} content="ایجاد حساب" />
 
                 <Link href="/auth/login">حساب ایجاد شده دارم</Link>
             </form>

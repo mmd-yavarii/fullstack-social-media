@@ -32,16 +32,27 @@
 
 .mainPostTest {
     margin: 10px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 .controlers {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     margin-top: 20px;
     opacity: 0.6;
     direction: ltr;
+    align-items: center;
 }
 .controlers button {
     display: flex;
     gap: 5px;
+}
+
+.deleteBtn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--forground);
 }
