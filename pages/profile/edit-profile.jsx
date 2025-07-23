@@ -1,6 +1,7 @@
 import EditProfile from '@/components/templates/EditProfile';
 import Users from '@/models/Users';
 import { verifyToken } from '@/utils/auth';
+import { connectDb } from '@/utils/connectDb';
 
 export default function EdirProfile({ userInfo }) {
     return <EditProfile userInfo={userInfo} />;
@@ -20,6 +21,8 @@ export async function getServerSideProps(context) {
     }
 
     try {
+        await connectDb();
+
         const user = await Users.findById(verifyedToken._id);
 
         return {

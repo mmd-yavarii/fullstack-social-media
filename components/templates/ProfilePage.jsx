@@ -86,7 +86,7 @@ function ProfilePage({ userInfo, userPosts, followers, following }) {
                     followers.map((i) => <UserCard key={i._id} {...i} />)
                 ) : (
                     <div className={styles.shareNewPost}>
-                        <p>هنوز دنبال‌کننده‌ای وجود ندارد!</p>
+                        <p style={{ textAlign: 'center', opacity: '0.5', marginTop: '30px' }}>هنوز دنبال‌کننده‌ای وجود ندارد!</p>
                     </div>
                 ))}
 
@@ -95,7 +95,7 @@ function ProfilePage({ userInfo, userPosts, followers, following }) {
                     following.map((i) => <UserCard key={i._id} {...i} />)
                 ) : (
                     <div className={styles.shareNewPost}>
-                        <p>هنوز کسی را دنبال نکرده‌اید!</p>
+                        <p style={{ textAlign: 'center', opacity: '0.5', marginTop: '30px' }}>هنوز کسی را دنبال نکرده‌اید!</p>
                     </div>
                 ))}
         </div>

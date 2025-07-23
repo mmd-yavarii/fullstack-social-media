@@ -3,6 +3,7 @@ import EmptyPage from '@/components/templates/EmptyPage';
 import Posts from '@/models/Posts';
 import Users from '@/models/Users';
 import { verifyToken } from '@/utils/auth';
+import { connectDb } from '@/utils/connectDb';
 import { useRouter } from 'next/router';
 
 import { IoMdArrowRoundBack } from 'react-icons/io';
@@ -36,6 +37,8 @@ export async function getServerSideProps(context) {
     }
 
     try {
+        await connectDb();
+
         const user = await Users.findById(verifyedToken._id);
 
         const savedIds = user.savedPosts;

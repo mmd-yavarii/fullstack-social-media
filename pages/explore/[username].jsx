@@ -2,6 +2,7 @@ import OtherUsersPage from '@/components/templates/OtherUsersPage';
 import Posts from '@/models/Posts';
 import Users from '@/models/Users';
 import { verifyToken } from '@/utils/auth';
+import { connectDb } from '@/utils/connectDb';
 
 export default function UserPage({ userInfo, usersPosts, followerId }) {
     return <OtherUsersPage userInfo={userInfo} usersPosts={usersPosts} followerId={followerId} />;
@@ -14,6 +15,8 @@ export async function getServerSideProps(context) {
     const verifyedToken = verifyToken(token);
 
     try {
+        await connectDb();
+
         const userInfo = await Users.findOne({ username });
         const usersPosts = await Posts.find({ author: userInfo._id });
         const followerId = await Users.findOne({ _id: verifyedToken._id }, { _id: 1 });

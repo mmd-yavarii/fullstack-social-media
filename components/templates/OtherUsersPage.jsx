@@ -10,6 +10,8 @@ import { useAlert } from '../modules/AlertProvider';
 import { useState } from 'react';
 import { PulseLoader } from 'react-spinners';
 import PostCard from '../modules/PostCard';
+import { BiAt } from 'react-icons/bi';
+import Link from 'next/link';
 
 function OtherUsersPage({ userInfo, usersPosts, followerId }) {
     if (!userInfo) return;

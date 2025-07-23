@@ -2,6 +2,7 @@ import ProfilePage from '@/components/templates/ProfilePage';
 import Posts from '@/models/Posts';
 import Users from '@/models/Users';
 import { verifyToken } from '@/utils/auth';
+import { connectDb } from '@/utils/connectDb';
 
 export default function Profile({ userInfo, userPosts, followers, following }) {
     return <ProfilePage userInfo={userInfo} userPosts={userPosts} followers={followers} following={following} />;
@@ -22,6 +23,8 @@ export async function getServerSideProps(context) {
     }
 
     try {
+        await connectDb();
+
         const user = await Users.findById(verifyedToken._id);
         const posts = await Posts.find({ author: user._id });
         const followers = await Users.find({ _id: { $in: user.followers } });
