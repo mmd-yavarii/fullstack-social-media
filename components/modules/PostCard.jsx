@@ -10,6 +10,7 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { useAlert } from './AlertProvider';
+import Link from 'next/link';
 
 function PostCard({ authorimage, authorusername, content, _id, createdAt, likes, comments }) {
     const showAlert = useAlert();
@@ -40,10 +41,12 @@ function PostCard({ authorimage, authorusername, content, _id, createdAt, likes,
     return (
         <div className={styles.container} ref={post}>
             <div className={styles.postInfo}>
-                <Image src={authorimage} alt="profile" width={55} height={55} />
+                <Link href={router.asPath !== '/profile' ? `/explore/${authorusername}` : ''}>
+                    <Image src={authorimage} alt="profile" width={55} height={55} />
+                </Link>
 
                 <div>
-                    <p>{authorusername}</p>
+                    <Link href={router.asPath !== '/profile' ? `/explore/${authorusername}` : ''}>{authorusername}</Link>
                     <span>{moment(createdAt).fromNow()}</span>
                 </div>
             </div>
@@ -55,7 +58,7 @@ function PostCard({ authorimage, authorusername, content, _id, createdAt, likes,
 
                 <PostComentsBtn _id={_id} commentCount={comments.length} />
 
-                <SaveBtn _id={_id} />
+                {router.asPath !== '/profile' && <SaveBtn _id={_id} />}
 
                 {router.asPath === '/profile' && (
                     <button className={styles.deleteBtn} onClick={deletePostHandler}>

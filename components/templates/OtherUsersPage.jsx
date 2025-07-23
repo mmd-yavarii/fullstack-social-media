@@ -3,12 +3,13 @@ import Image from 'next/image';
 import { IoArrowBack } from 'react-icons/io5';
 
 import { useRouter } from 'next/router';
-import PostList from '../modules/PostList';
+// import PostList from '../modules/PostList';
 
 import styles from './Profiles.module.css';
 import { useAlert } from '../modules/AlertProvider';
 import { useState } from 'react';
 import { PulseLoader } from 'react-spinners';
+import PostCard from '../modules/PostCard';
 
 function OtherUsersPage({ userInfo, usersPosts, followerId }) {
     if (!userInfo) return;
@@ -95,10 +96,12 @@ function OtherUsersPage({ userInfo, usersPosts, followerId }) {
 
             {/* posts */}
             {usersPosts.length ? (
-                <PostList posts={usersPosts} />
+                usersPosts.map((i) => <PostCard key={i._id} {...i} />)
             ) : (
                 <div className={styles.shareNewPost}>
-                    <p>هنوز پستی وجود ندارد !</p>
+                    <BiAt size="2rem" />
+                    <p>هنوز پستی وجود ندارد!</p>
+                    <Link href="/new-post">برای ایجاد اولین پست کلیک کنید</Link>
                 </div>
             )}
         </div>

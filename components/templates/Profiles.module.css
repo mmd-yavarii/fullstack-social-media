@@ -68,6 +68,9 @@
     flex-direction: column;
     gap: 10px;
 }
+.activeTab {
+    color: var(--them);
+}
 
 .followAndMessageSession {
     display: flex;
@@ -91,8 +94,9 @@
 }
 .followAndMessageSession button:last-child {
     border: 1px solid var(--them);
-    font-weight: 900;
     color: var(--them);
+    font-weight: 900;
+    /* background-color: var(--inp); */
 }
 
 .shareNewPost {

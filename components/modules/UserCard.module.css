@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    direction: ltr;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background-color: var(--inp);
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.container p {
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+.container span {
+    opacity: 0.5;
+}
+.container img {
+    border: 2px solid var(--border);
+}

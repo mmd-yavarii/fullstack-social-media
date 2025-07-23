@@ -1,16 +1,17 @@
 @import '@fontsource/vazirmatn';
 
 :root {
-    /* --background: #ffffff;
-    --foreground: #171717;
-    --border: #e3e3e3;
-    --them: #1e65ff; */
-
     --background: #141416;
     --foreground: #e4e4e4;
     --border: #27282d;
     --them: dodgerblue;
     --inp: #202125;
+
+    /* --background: #f5f5f5; 
+    --foreground: #1a1a1a; 
+    --border: #d0d0d0;
+    --them: dodgerblue; 
+    --inp: #ffffff;  */
 }
 
 html,

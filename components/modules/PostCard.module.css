@@ -21,7 +21,8 @@
     gap: 5px;
     font-weight: 900;
 }
-.postInfo div p {
+.postInfo div a {
+    font-weight: 900;
     font-size: 1.2rem;
 }
 

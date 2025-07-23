@@ -8,12 +8,15 @@ import { BiAt } from 'react-icons/bi';
 
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import PostList from '../modules/PostList';
+import { useState } from 'react';
+import PostCard from '../modules/PostCard';
+import UserCard from '../modules/UserCard';
 
-function ProfilePage({ userInfo, userPosts }) {
-    const { username, bio, followers, following, fullName, image } = userInfo;
+function ProfilePage({ userInfo, userPosts, followers, following }) {
+    const { username, bio, fullName, image } = userInfo;
 
     const router = useRouter();
+    const [activeTab, setActiveTab] = useState('posts'); // posts / followers / following
 
     return (
         <div className={styles.container}>
@@ -36,17 +39,17 @@ function ProfilePage({ userInfo, userPosts }) {
 
                     {/* followers and posts ionfo */}
                     <div className={`${styles.profileInfo} blur`}>
-                        <div>
+                        <div onClick={() => setActiveTab('followers')} className={activeTab === 'followers' ? styles.activeTab : null}>
                             <span>Followers</span>
                             <span>{followers.length}</span>
                         </div>
 
-                        <div>
+                        <div onClick={() => setActiveTab('following')} className={activeTab === 'following' ? styles.activeTab : null}>
                             <span>Following</span>
                             <span>{following.length}</span>
                         </div>
 
-                        <div>
+                        <div onClick={() => setActiveTab('posts')} className={activeTab === 'posts' ? styles.activeTab : null}>
                             <span>Posts</span>
                             <span>{userPosts.length}</span>
                         </div>
@@ -66,16 +69,35 @@ function ProfilePage({ userInfo, userPosts }) {
                 )}
             </div>
 
-            {/* posts */}
-            {userPosts.length ? (
-                <PostList posts={userPosts} />
-            ) : (
-                <div className={styles.shareNewPost}>
-                    <BiAt size="2rem" />
-                    <p>هنوز پستی وجود ندارد !</p>
-                    <Link href="/new-post">برای ایجاد اولین پسن کلیک کنید</Link>
-                </div>
-            )}
+            {/* posts / followers / followings */}
+            {activeTab === 'posts' &&
+                (userPosts.length ? (
+                    userPosts.map((i) => <PostCard key={i._id} {...i} />)
+                ) : (
+                    <div className={styles.shareNewPost}>
+                        <BiAt size="2rem" />
+                        <p>هنوز پستی وجود ندارد!</p>
+                        <Link href="/new-post">برای ایجاد اولین پست کلیک کنید</Link>
+                    </div>
+                ))}
+
+            {activeTab === 'followers' &&
+                (followers.length ? (
+                    followers.map((i) => <UserCard key={i._id} {...i} />)
+                ) : (
+                    <div className={styles.shareNewPost}>
+                        <p>هنوز دنبال‌کننده‌ای وجود ندارد!</p>
+                    </div>
+                ))}
+
+            {activeTab === 'following' &&
+                (following.length ? (
+                    following.map((i) => <UserCard key={i._id} {...i} />)
+                ) : (
+                    <div className={styles.shareNewPost}>
+                        <p>هنوز کسی را دنبال نکرده‌اید!</p>
+                    </div>
+                ))}
         </div>
     );
 }
