@@ -1,20 +1,43 @@
 import Image from 'next/image';
 
 import { IoArrowBack } from 'react-icons/io5';
-import { BiAt } from 'react-icons/bi';
 
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import PostList from '../modules/PostList';
 
 import styles from './Profiles.module.css';
 import { useAlert } from '../modules/AlertProvider';
+import { useState } from 'react';
+import { PulseLoader } from 'react-spinners';
 
-function OtheUsersPage({ userInfo, usersPosts }) {
+function OtherUsersPage({ userInfo, usersPosts, followerId }) {
     if (!userInfo) return;
-    const showAlert = useAlert();
 
+    const showAlert = useAlert();
+    const router = useRouter();
     const { username, _id, image, fullName, following, followers, bio } = userInfo;
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [followersList, setFollowersList] = useState(followers);
+
+    // follow and unfollow user handler
+    async function toggleFollow() {
+        const confimation = followersList.includes(followerId) ? confirm(`مطمئنی می‌خوای ${username} رو آنفالو کنی؟`) : true;
+        if (!confimation || isLoading) return;
+
+        setIsLoading(true);
+        const response = await fetch('/api/account/follow-other-toggle', {
+            method: 'POST',
+            body: JSON.stringify({ followingId: _id }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const result = await response.json();
+        showAlert(result.status, result.message);
+        setFollowersList((prev) => (prev.includes(followerId) ? prev.filter((id) => id !== followerId) : [...prev, followerId]));
+        setIsLoading(false);
+    }
 
     return (
         <div className={styles.container}>
@@ -35,7 +58,7 @@ function OtheUsersPage({ userInfo, usersPosts }) {
                     <div className={`${styles.profileInfo} blur`}>
                         <div>
                             <span>Followers</span>
-                            <span>{followers.length}</span>
+                            <span>{followersList.length}</span>
                         </div>
 
                         <div>
@@ -56,7 +79,15 @@ function OtheUsersPage({ userInfo, usersPosts }) {
                     <p>{bio}</p>
 
                     <div className={styles.followAndMessageSession}>
-                        {false ? <button>لغو دنبال کردن</button> : <button>دنبال کردن</button>}
+                        <button onClick={toggleFollow}>
+                            {isLoading ? (
+                                <PulseLoader size="0.4rem" color="#ffff" />
+                            ) : followersList.includes(followerId) ? (
+                                'لغو دنبال کردن'
+                            ) : (
+                                'دنبال کردن'
+                            )}
+                        </button>
                         <button onClick={() => showAlert('failed', 'ویژگی ارسال پیام موقتا غیر فعال است')}>ارسال پیام</button>
                     </div>
                 </div>
@@ -74,4 +105,4 @@ function OtheUsersPage({ userInfo, usersPosts }) {
     );
 }
 
-export default OtheUsersPage;
+export default OtherUsersPage;
