@@ -1,19 +1,20 @@
 import Image from 'next/image';
 
-import styles from './Profiles.module.css';
-
 import { IoArrowBack } from 'react-icons/io5';
-import { VscSettings } from 'react-icons/vsc';
 import { BiAt } from 'react-icons/bi';
 
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PostList from '../modules/PostList';
 
-function ProfilePage({ userInfo, userPosts }) {
-    const { username, bio, followers, following, fullName, image } = userInfo;
+import styles from './Profiles.module.css';
+import { useAlert } from '../modules/AlertProvider';
 
-    const router = useRouter();
+function OtheUsersPage({ userInfo, usersPosts }) {
+    if (!userInfo) return;
+    const showAlert = useAlert();
+
+    const { username, _id, image, fullName, following, followers, bio } = userInfo;
 
     return (
         <div className={styles.container}>
@@ -26,10 +27,6 @@ function ProfilePage({ userInfo, userPosts }) {
                         </button>
 
                         <p>{username}</p>
-
-                        <Link href="/profile/setting">
-                            <VscSettings size="1.5rem" />
-                        </Link>
                     </div>
 
                     <Image src={image} alt="Profile Image" fill sizes="(max-width: 768px) 100vw, 410px" />
@@ -48,36 +45,33 @@ function ProfilePage({ userInfo, userPosts }) {
 
                         <div>
                             <span>Posts</span>
-                            <span>{userPosts.length}</span>
+                            <span>{usersPosts.length}</span>
                         </div>
                     </div>
                 </div>
 
-                {/* bio and name */}
-                {bio.length || fullName.length ? (
-                    <div className={styles.personamInfo}>
-                        <p style={{ fontWeight: '900', fontSize: '1.1rem' }}> {fullName}</p>
-                        <p>{bio}</p>
+                {/* bio and name and follow btn */}
+                <div className={styles.personamInfo}>
+                    <p style={{ fontWeight: '900', fontSize: '1.1rem' }}> {fullName}</p>
+                    <p>{bio}</p>
+
+                    <div className={styles.followAndMessageSession}>
+                        {false ? <button>لغو دنبال کردن</button> : <button>دنبال کردن</button>}
+                        <button onClick={() => showAlert('failed', 'ویژگی ارسال پیام موقتا غیر فعال است')}>ارسال پیام</button>
                     </div>
-                ) : (
-                    <Link href="/profile/edit-profile" className={styles.editUserPage}>
-                        برای تکمیل اطلاعات کلیک کنید
-                    </Link>
-                )}
+                </div>
             </div>
 
             {/* posts */}
-            {userPosts.length ? (
-                <PostList posts={userPosts} />
+            {usersPosts.length ? (
+                <PostList posts={usersPosts} />
             ) : (
                 <div className={styles.shareNewPost}>
-                    <BiAt size="2rem" />
                     <p>هنوز پستی وجود ندارد !</p>
-                    <Link href="/new-post">برای ایجاد اولین پسن کلیک کنید</Link>
                 </div>
             )}
         </div>
     );
 }
 
-export default ProfilePage;
+export default OtheUsersPage;

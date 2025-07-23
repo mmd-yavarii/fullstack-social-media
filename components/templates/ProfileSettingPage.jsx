@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import styles from './ProfilePage.module.css';
+import styles from './Profiles.module.css';
 
 import { LiaUserEditSolid } from 'react-icons/lia';
 import { TbBookmarks } from 'react-icons/tb';
