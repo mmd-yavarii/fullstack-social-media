@@ -1,13 +1,20 @@
+import { useAlert } from '@/components/modules/AlertProvider';
 import NoficCard from '@/components/modules/NoficCard';
 import Notifs from '@/models/Notifs';
 import Users from '@/models/Users';
 import { verifyToken } from '@/utils/auth';
 import { connectDb } from '@/utils/connectDb';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
 export default function Notifications({ notifs }) {
     const router = useRouter();
+
+    // change is read after mounting
+    useEffect(() => {
+        fetch('/api/account/read-notifs').then((res) => {});
+    }, []);
 
     return (
         <>

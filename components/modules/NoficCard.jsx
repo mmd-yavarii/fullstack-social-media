@@ -4,10 +4,10 @@ import Image from 'next/image';
 import styles from './NoficCard.module.css';
 import Link from 'next/link';
 
-function NoficCard({ message, senderImage, senderUsername, createdAt }) {
+function NoficCard({ message, senderImage, senderUsername, createdAt, isRead }) {
     return (
         <div className={styles.container}>
-            <Link href={`/explore/${senderUsername}`}>
+            <Link href={`/explore/${senderUsername}`} className={!isRead ? styles.newNotif : null}>
                 <Image src={senderImage} alt={senderUsername} width={50} height={50} />
             </Link>
 

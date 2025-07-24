@@ -11,6 +11,12 @@ export default function AlertProvider({ children }) {
     const [message, setMessage] = useState(null);
     const [isVisable, setIsVisable] = useState(false);
 
+    // make a sound
+    useEffect(() => {
+        const audio = new Audio('/sound.wav');
+        if (isVisable) audio.play();
+    }, [isVisable]);
+
     // close alert after 2s
     useEffect(() => {
         if (!isVisable) return;

@@ -33,3 +33,7 @@
     font-size: 1rem;
     font-weight: 400;
 }
+
+.newNotif img {
+    border: 1px solid var(--them);
+}

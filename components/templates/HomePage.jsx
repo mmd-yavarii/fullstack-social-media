@@ -7,6 +7,7 @@ import { IoMdAddCircle } from 'react-icons/io';
 
 import styles from './HomePage.module.css';
 import PostCard from '../modules/PostCard';
+import { useAlert } from '../modules/AlertProvider';
 
 function HomePage({ countNotifs, followingPosts, user }) {
     return (
@@ -48,11 +49,13 @@ function HomePage({ countNotifs, followingPosts, user }) {
             </div>
 
             {/* posts */}
-            {followingPosts.length ? (
-                followingPosts.map((i) => <PostCard key={i._id} {...i} />)
-            ) : (
-                <p style={{ textAlign: 'center', opacity: '0.5', marginTop: '30px' }}>هیچ پستی یافت نشد</p>
-            )}
+            <div className={styles.posts}>
+                {followingPosts.length ? (
+                    followingPosts.map((i) => <PostCard key={i._id} {...i} />)
+                ) : (
+                    <p style={{ textAlign: 'center', opacity: '0.5', marginTop: '30px' }}>هیچ پستی یافت نشد</p>
+                )}
+            </div>
         </>
     );
 }

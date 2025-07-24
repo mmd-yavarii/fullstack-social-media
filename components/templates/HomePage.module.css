@@ -15,7 +15,7 @@
     height: 16px;
     font-size: 10px;
     color: white;
-    background-color: var(--them);
+    background-color: red;
     border-radius: 50%;
     text-align: center;
     line-height: 16px;
@@ -86,4 +86,12 @@
 .stories .pending img {
     border: 5px solid var(--background);
     outline: 1px solid var(--them);
+}
+
+@media (min-width: 800px) {
+    .posts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        direction: ltr;
+    }
 }
