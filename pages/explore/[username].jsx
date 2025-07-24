@@ -14,6 +14,15 @@ export async function getServerSideProps(context) {
     const { token } = context.req.cookies;
     const verifyedToken = verifyToken(token);
 
+    if (!verifyedToken) {
+        return {
+            redirect: {
+                destination: '/auth/login',
+                permanent: false,
+            },
+        };
+    }
+
     try {
         await connectDb();
 
@@ -36,7 +45,8 @@ export async function getServerSideProps(context) {
     } catch (error) {
         console.log(error);
         return {
-            notFound: true,
+            props: {},
+            // notFound: true,
         };
     }
 }

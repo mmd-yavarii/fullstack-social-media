@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { FaRegBell } from 'react-icons/fa';
 import { LuMessageSquareText } from 'react-icons/lu';
@@ -7,12 +8,12 @@ import { IoMdAddCircle } from 'react-icons/io';
 import styles from './HomePage.module.css';
 import PostCard from '../modules/PostCard';
 
-function HomePage({ countNotifs, followingPosts }) {
+function HomePage({ countNotifs, followingPosts, user }) {
     return (
         <>
             {/* header (buttons for bell and messages) */}
             <header className={`${styles.header}  `}>
-                <Link href="">
+                <Link href="/notifs">
                     <span style={{ position: 'relative', display: 'inline-block' }}>
                         <FaRegBell size="1.3rem" />
                         {countNotifs > 0 && <span className={styles.notifCounter}>{countNotifs < 9 ? countNotifs : '+9'}</span>}
@@ -29,16 +30,19 @@ function HomePage({ countNotifs, followingPosts }) {
 
             {/* stories  */}
             <div className={styles.stories}>
-                <Link href="" className={styles.myStory}>
-                    <img src="/profiles/4.webp" />
-                    <span>
-                        <IoMdAddCircle />
-                    </span>
+                <Link href="" className={`${styles.myStory} ${false && styles.pending}`}>
+                    <Image src={user.image} width={70} height={70} alt="user story" />
+
+                    {!false && (
+                        <span>
+                            <IoMdAddCircle />
+                        </span>
+                    )}
                     <p>You</p>
                 </Link>
 
                 <Link href="" className={styles.pending}>
-                    <img src="/profiles/4.webp" />
+                    <Image src="/profiles/4.webp" width={70} height={70} alt="user story" />
                     <p>mmd_yavarii</p>
                 </Link>
             </div>

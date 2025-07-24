@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    gap: 15px;
+    background-color: var(--inp);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    align-items: center;
+}
+
+.container img {
+    border-radius: 50%;
+}
+
+.username {
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.username span {
+    font-weight: 400;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    opacity: 0.5;
+}
+
+.message {
+    margin: 4px 0 0;
+    font-size: 1rem;
+    font-weight: 400;
+}

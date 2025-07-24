@@ -42,5 +42,5 @@ const NotifSchema = new Schema({
     },
 });
 
-const Notif = models.Notif || model('Notif', NotifSchema);
-export default Notif;
+const Notifs = models.Notifs || model('Notifs', NotifSchema);
+export default Notifs;
