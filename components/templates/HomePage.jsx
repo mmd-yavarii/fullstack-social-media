@@ -2,12 +2,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { FaRegBell } from 'react-icons/fa';
-import { LuMessageSquareText } from 'react-icons/lu';
 import { IoMdAddCircle } from 'react-icons/io';
 
 import styles from './HomePage.module.css';
 import PostCard from '../modules/PostCard';
-import { useAlert } from '../modules/AlertProvider';
 
 function HomePage({ countNotifs, followingPosts, user }) {
     return (
@@ -21,12 +19,7 @@ function HomePage({ countNotifs, followingPosts, user }) {
                     </span>
                 </Link>
 
-                <Link href="">
-                    <span style={{ position: 'relative', display: 'inline-block' }}>
-                        <LuMessageSquareText size="1.3rem" />
-                        {false && <span className={styles.notifCounter}>{0}</span>}
-                    </span>
-                </Link>
+                <p>Home</p>
             </header>
 
             {/* stories  */}
