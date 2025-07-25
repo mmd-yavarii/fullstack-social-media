@@ -1,4 +1,4 @@
-import PostList from '@/components/modules/PostList';
+import PostCard from '@/components/modules/PostCard';
 import EmptyPage from '@/components/templates/EmptyPage';
 import Posts from '@/models/Posts';
 import Users from '@/models/Users';
@@ -18,7 +18,7 @@ export default function SavedPosts({ bookmaredPosts }) {
                     <IoMdArrowRoundBack size="1.5rem" />
                 </button>
             </div>
-            {bookmaredPosts.length ? <PostList posts={bookmaredPosts} /> : <EmptyPage />}
+            {bookmaredPosts.length ? bookmaredPosts.map((i) => <PostCard {...i} />) : <EmptyPage />}
         </>
     );
 }

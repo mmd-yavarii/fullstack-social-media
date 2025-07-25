@@ -13,7 +13,7 @@ export default function AlertProvider({ children }) {
 
     // make a sound
     useEffect(() => {
-        const audio = new Audio('/sound.wav');
+        const audio = new Audio('/alert.mp3');
         if (isVisable) audio.play();
     }, [isVisable]);
 

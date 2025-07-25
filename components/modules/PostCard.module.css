@@ -30,6 +30,14 @@
     opacity: 0.5;
     font-weight: 400;
 }
+.container textarea {
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
 
 .mainPostTest {
     margin: 10px 0;
@@ -55,5 +63,28 @@
     background-color: transparent;
     border: none;
     outline: none;
+    color: var(--forground);
+}
+
+.editBtnContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.editBtnContainer button {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: var(--them);
+    color: #fff;
+    font-weight: 900;
+}
+.editBtnContainer button:last-child {
+    background-color: transparent;
+    border: 1px solid var(--them);
     color: var(--forground);
 }

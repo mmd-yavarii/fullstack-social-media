@@ -60,10 +60,14 @@ export async function getServerSideProps(context) {
                 };
             })
         );
+        const sorted = notifsInfo.sort((a, b) => {
+            if (a.isRead !== b.isRead) return a.isRead - b.isRead;
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
 
         return {
             props: {
-                notifs: JSON.parse(JSON.stringify(notifsInfo)),
+                notifs: JSON.parse(JSON.stringify(sorted)),
             },
         };
     } catch (error) {
