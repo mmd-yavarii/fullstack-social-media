@@ -48,9 +48,8 @@
 
 .controlers {
     display: flex;
-    gap: 25px;
+    gap: 30px;
     margin-top: 20px;
-    opacity: 0.6;
     direction: ltr;
     align-items: center;
 }

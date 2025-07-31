@@ -8,9 +8,11 @@ import { IoLogOutOutline } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 
 import { IoMdArrowRoundBack } from 'react-icons/io';
+import { useAlert } from '../modules/AlertProvider';
 
 function ProfileSettingPage() {
     const router = useRouter();
+    const showAlert = useAlert();
 
     async function logoutHandler() {
         const confirmation = confirm('ایا مطمعنی ؟');
@@ -18,7 +20,7 @@ function ProfileSettingPage() {
 
         const response = await fetch('/api/auth/logout');
         const result = await response.json();
-        alert(result.message);
+        showAlert('success', result.message);
         if (response.ok) router.replace('/auth/login');
     }
 

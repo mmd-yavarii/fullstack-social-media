@@ -24,10 +24,6 @@ function ProfilePage({ userInfo, userPosts, followers, following }) {
                 <div className={styles.profileImage}>
                     {/* profile and some images */}
                     <div className={styles.controls}>
-                        <button onClick={() => router.back()}>
-                            <IoArrowBack size="1.5rem" />
-                        </button>
-
                         <p>{username}</p>
 
                         <Link href="/profile/setting">

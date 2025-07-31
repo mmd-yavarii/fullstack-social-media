@@ -6,6 +6,7 @@
     align-items: center;
     font-size: 1.2rem;
     color: var(--foreground);
+    opacity: 0.5;
 }
 
 .btn span {
@@ -14,4 +15,5 @@
 
 .liked {
     color: var(--them);
+    opacity: 1;
 }

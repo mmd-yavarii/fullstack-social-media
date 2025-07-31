@@ -1,4 +1,4 @@
-import Notif from '@/models/Notifs';
+import Notifs from '@/models/Notifs';
 import Users from '@/models/Users';
 import { verifyToken } from '@/utils/auth';
 import { connectDBForAPI } from '@/utils/connectDb';
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
                 type: 'follow',
                 message: `${followerInfo.username} شما را دنبال میکند`,
             };
-            await Notif.create(payload);
+            await Notifs.create(payload);
             return res.status(200).json({ status: 'success', message: `${followingInfo.username} آنفالو شد`, followers: followingInfo.followers });
         }
     } catch (error) {

@@ -54,12 +54,6 @@ export default function NewPost() {
 
     return (
         <>
-            <div className="backBtn">
-                <button onClick={() => router.back()}>
-                    <IoMdArrowRoundBack size="1.5rem" />
-                </button>
-            </div>
-
             <form style={formStyle} onSubmit={addPost}>
                 <textarea
                     placeholder="محتوای پست را اینجا وارد کنید"

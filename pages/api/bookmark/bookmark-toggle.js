@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     if (!verifyedToken) return res.status(422).json({ status: 'failed', message: 'درخواست معتبر نیست' });
 
     try {
-        // validation youser to access for logout
+        // validation youser to access
         const user = await Users.findOne({ _id: verifyedToken._id }, { email: 1 });
         if (!user) return res.status(422).json({ status: 'failed', message: 'کاربر پیدا نشد' });
 

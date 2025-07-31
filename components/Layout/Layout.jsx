@@ -30,23 +30,23 @@ export default function Layout({ children }) {
 
             {!path.includes('/auth') && (
                 <footer className={styles.footer}>
-                    <Link href="/" className={path == '/' ? styles.selected : null}>
-                        {path == '/' ? <GoHomeFill /> : <GoHome />}
+                    <Link replace={true} href="/" className={path == '/' || path == '/notifs' ? styles.selected : null}>
+                        {path == '/' || path == '/notifs' ? <GoHomeFill /> : <GoHome />}
                     </Link>
 
-                    <Link href="/explore" className={path.includes('/explore') ? styles.selected : null}>
+                    <Link replace={true} href="/explore" className={path.includes('/explore') ? styles.selected : null}>
                         {path.includes('/explore') ? <IoSearchSharp /> : <IoSearchOutline />}
                     </Link>
 
-                    <Link href={isLogin ? '/new-post' : '/auth/login'} className={path == '/new-post' ? styles.selected : null}>
+                    <Link replace={true} href={isLogin ? '/new-post' : '/auth/login'} className={path == '/new-post' ? styles.selected : null}>
                         {path == '/new-post' ? <BiSolidMessageSquareAdd /> : <BiMessageSquareAdd />}
                     </Link>
 
-                    <Link href={isLogin ? '' : '/auth/login'} className={path == '' ? styles.selected : null}>
-                        {path == '' ? <TbMessageFilled /> : <TbMessage />}
+                    <Link replace={true} href={isLogin ? '' : '/auth/login'} className={path == 'mms' ? styles.selected : null}>
+                        {path == 'mm' ? <TbMessageFilled /> : <TbMessage />}
                     </Link>
 
-                    <Link href={isLogin ? '/profile' : '/auth/login'} className={path.includes('/profile') ? styles.selected : null}>
+                    <Link replace={true} href={isLogin ? '/profile' : '/auth/login'} className={path.includes('/profile') ? styles.selected : null}>
                         {path.includes('/profile') ? <HiUserCircle /> : <HiOutlineUserCircle />}
                     </Link>
                 </footer>
