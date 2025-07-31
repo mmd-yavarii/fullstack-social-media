@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: 100dvh;
+    height: 90dvh;
     flex-direction: column;
     gap: 30px;
 }
