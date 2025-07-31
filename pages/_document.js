@@ -4,6 +4,7 @@ export default function Document() {
     return (
         <Html lang="fa" dir="rtl">
             <Head>
+                <meta name="theme-color" content="#141416" />
                 <title>social media</title>
             </Head>
             <body>

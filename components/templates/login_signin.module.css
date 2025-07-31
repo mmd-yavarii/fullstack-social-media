@@ -3,6 +3,8 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
+    max-width: 900px;
+    margin: auto;
     height: 90dvh;
     flex-direction: column;
     gap: 30px;
