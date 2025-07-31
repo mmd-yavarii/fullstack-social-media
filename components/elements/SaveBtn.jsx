@@ -5,6 +5,7 @@ import { TbBookmark, TbBookmarkFilled } from 'react-icons/tb';
 
 function SaveBtn({ _id }) {
     const [isBookmark, setIsBookmark] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetch('/api/bookmark/check-is-bookmark', {
@@ -15,7 +16,8 @@ function SaveBtn({ _id }) {
             },
         })
             .then((res) => res.json())
-            .then((res) => setIsBookmark(res.isBookmarked));
+            .then((res) => setIsBookmark(res.isBookmarked))
+            .finally(() => setIsLoading(false));
     }, []);
 
     // handler bookmark
@@ -33,11 +35,19 @@ function SaveBtn({ _id }) {
         const result = await response.json();
     }
 
-    return (
-        <button onClick={bookmarkHandler} className={styles.btn}>
-            {isBookmark ? <TbBookmarkFilled size="1.5rem" /> : <TbBookmark size="1.5rem" />}
-        </button>
-    );
+    if (isLoading) {
+        return (
+            <button className={styles.btn}>
+                <TbBookmark size="1.5rem" />
+            </button>
+        );
+    } else {
+        return (
+            <button onClick={bookmarkHandler} className={styles.btn}>
+                {isBookmark ? <TbBookmarkFilled size="1.5rem" /> : <TbBookmark size="1.5rem" />}
+            </button>
+        );
+    }
 }
 
 export default SaveBtn;

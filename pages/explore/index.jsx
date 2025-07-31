@@ -6,7 +6,7 @@ export default function Explore() {
     return (
         <>
             <div className="backBtn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <p>Explore</p>
+                <p style={{ fontWeight: 900 }}>Explore</p>
             </div>
 
             <SearchInp />

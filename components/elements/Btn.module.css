@@ -4,7 +4,7 @@
     border: none;
     outline: none;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--foreground);
     opacity: 0.5;
 }

@@ -14,12 +14,12 @@ function HomePage({ countNotifs, followingPosts, user }) {
             <header className={`${styles.header}  `}>
                 <Link href="/notifs">
                     <span style={{ position: 'relative', display: 'inline-block' }}>
-                        <FaRegBell size="1.3rem" />
+                        <FaRegBell size="1.5rem" />
                         {countNotifs > 0 && <span className={styles.notifCounter}>{countNotifs < 9 ? countNotifs : '+9'}</span>}
                     </span>
                 </Link>
 
-                <p>Home</p>
+                <p style={{ fontWeight: 900 }}>Home</p>
             </header>
 
             {/* stories  */}

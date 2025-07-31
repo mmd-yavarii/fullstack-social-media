@@ -113,6 +113,6 @@ input::placeholder {
 
 @media (max-width: 800px) {
     body {
-        padding-bottom: 50px;
+        padding-bottom: 80px;
     }
 }

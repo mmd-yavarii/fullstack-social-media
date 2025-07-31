@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 function LikeBtn({ _id, countLiks }) {
     const [isLiked, setIsLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(countLiks);
+    const [isLoading, setIsLoading] = useState(true);
 
     // check is liked by user after mounting
     useEffect(() => {
@@ -18,7 +19,8 @@ function LikeBtn({ _id, countLiks }) {
             },
         })
             .then((res) => res.json())
-            .then((res) => setIsLiked(res.isLiked));
+            .then((res) => setIsLiked(res.isLiked))
+            .finally(() => setIsLoading(false));
     }, []);
 
     // like a post handler
@@ -43,12 +45,21 @@ function LikeBtn({ _id, countLiks }) {
         }
     }
 
-    return (
-        <button className={`${styles.btn} ${isLiked && styles.liked} `} onClick={likeHandler}>
-            {isLiked ? <BiSolidLike size="1.5rem" /> : <BiLike size="1.5rem" />}
-            <span>{likeCount}</span>
-        </button>
-    );
+    if (isLoading) {
+        return (
+            <button className={styles.btn}>
+                <BiLike size="1.5rem" />
+                <span>-</span>
+            </button>
+        );
+    } else {
+        return (
+            <button className={`${styles.btn} ${isLiked && styles.liked} `} onClick={likeHandler}>
+                {isLiked ? <BiSolidLike size="1.5rem" /> : <BiLike size="1.5rem" />}
+                <span>{likeCount}</span>
+            </button>
+        );
+    }
 }
 
 export default LikeBtn;
