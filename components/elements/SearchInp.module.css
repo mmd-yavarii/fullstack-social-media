@@ -1,0 +1,64 @@
+.container {
+    width: 100%;
+    max-width: 380px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.input {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--inp);
+    color: var(--foreground);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.input input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    direction: ltr;
+}
+
+.searchResult {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--foreground);
+    margin-top: 10px;
+    position: absolute;
+    width: 100%;
+    max-width: 380px;
+    padding: 10px;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeSlideIn 0.3s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.searchResult > * {
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    background-color: transparent;
+}
+.searchResult > *:last-child {
+    border: none;
+}
+
+.loader {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    direction: ltr;
+}

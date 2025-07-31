@@ -6,7 +6,6 @@ import { IoArrowBack } from 'react-icons/io5';
 import { VscSettings } from 'react-icons/vsc';
 import { BiAt } from 'react-icons/bi';
 
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useState } from 'react';
 import PostCard from '../modules/PostCard';
@@ -15,7 +14,6 @@ import UserCard from '../modules/UserCard';
 function ProfilePage({ userInfo, userPosts, followers, following }) {
     const { username, bio, fullName, image } = userInfo;
 
-    const router = useRouter();
     const [activeTab, setActiveTab] = useState('posts'); // posts / followers / following
 
     return (

@@ -1,18 +1,15 @@
+import SearchInp from '@/components/elements/SearchInp';
 import UserCard from '@/components/modules/UserCard';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 export default function Explore() {
     return (
         <>
-            <h1>explore </h1>
-            <UserCard username={'reza_amiri'} image={'/profiles/5.webp'} fullName={'reza amiri'} />
-            <UserCard username={'reza_amiri'} image={'/profiles/5.webp'} fullName={'reza amiri'} />
-            <UserCard username={'reza_amiri'} image={'/profiles/5.webp'} fullName={'reza amiri'} />
-            <UserCard username={'reza_amiri'} image={'/profiles/5.webp'} fullName={'reza amiri'} />
-            <UserCard username={'reza_amiri'} image={'/profiles/5.webp'} fullName={'reza amiri'} />
-            <UserCard username={'reza_amiri'} image={'/profiles/5.webp'} fullName={'reza amiri'} />
+            <div className="backBtn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <p>Explore</p>
+            </div>
+
+            <SearchInp />
         </>
     );
 }
-
-// search users profile (api)
-// show random posts
