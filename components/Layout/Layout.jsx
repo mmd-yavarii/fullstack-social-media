@@ -42,9 +42,9 @@ export default function Layout({ children }) {
                         {path == '/new-post' ? <BiSolidMessageSquareAdd /> : <BiMessageSquareAdd />}
                     </Link>
 
-                    <Link replace={true} href={isLogin ? '' : '/auth/login'} className={path == 'mms' ? styles.selected : null}>
+                    {/* <Link replace={true} href={isLogin ? '' : '/auth/login'} className={path == 'mms' ? styles.selected : null}>
                         {path == 'mm' ? <TbMessageFilled /> : <TbMessage />}
-                    </Link>
+                    </Link> */}
 
                     <Link replace={true} href={isLogin ? '/profile' : '/auth/login'} className={path.includes('/profile') ? styles.selected : null}>
                         {path.includes('/profile') ? <HiUserCircle /> : <HiOutlineUserCircle />}
