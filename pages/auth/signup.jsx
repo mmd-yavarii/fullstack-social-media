@@ -21,7 +21,6 @@ export default function Signup() {
         alert(result.message);
 
         if (response.ok) {
-            alert(result.message);
             router.replace('/');
         }
         setIsLoading(false);

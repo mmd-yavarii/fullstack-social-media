@@ -1,6 +1,6 @@
 import { verify } from 'jsonwebtoken';
 import connectDb from './connectDb';
-import { hash } from 'bcryptjs';
+import { compare, hash } from 'bcryptjs';
 
 // regexes
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,4 +34,10 @@ async function hashPassword(password) {
     return result;
 }
 
-export { verifyToken, emailRegex, passwordRegex, usernameRegex, connect_db_in_api, hashPassword };
+// hashed password validation
+async function hashedPassValid(password, hashed) {
+    const result = await compare(password, hashed);
+    return result;
+}
+
+export { verifyToken, emailRegex, passwordRegex, usernameRegex, connect_db_in_api, hashPassword, hashedPassValid };
