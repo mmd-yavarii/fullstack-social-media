@@ -37,6 +37,7 @@ export default async function handler(req, res) {
     // login
     const tokenPayload = {
         _id: user._id,
+        image: user.image,
         username: user.username,
     };
     const newToken = sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '7d' });
