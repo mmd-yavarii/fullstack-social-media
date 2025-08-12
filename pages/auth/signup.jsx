@@ -1,8 +1,33 @@
 import SignupPage from '@/components/templates/SignupPage';
 import { verifyToken } from '@/utils/auth';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export default function Signup() {
-    return <SignupPage isLoading={false} submitHandler={(form) => console.log(form)} />;
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
+
+    // sign up handler
+    async function signupHandler(form) {
+        setIsLoading(true);
+        const response = await fetch('/api/auth/signup', {
+            method: 'POST',
+            body: JSON.stringify(form),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const result = await response.json();
+        alert(result.message);
+
+        if (response.ok) {
+            alert(result.message);
+            router.replace('/');
+        }
+        setIsLoading(false);
+    }
+
+    return <SignupPage isLoading={isLoading} submitHandler={signupHandler} />;
 }
 
 export async function getServerSideProps(context) {

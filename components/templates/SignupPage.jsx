@@ -15,8 +15,16 @@ function SignupPage({ isLoading, submitHandler }) {
         username: '',
         email: '',
         password: '',
-        rePassword: '',
     });
+    const [rePassword, setRePassword] = useState('');
+
+    async function handler() {
+        if (!usernameRegex.test(form.username) || !emailRegex.test(form.email) || !passwordRegex.test(form.password)) {
+            alert('info is not valid');
+            return;
+        }
+        await submitHandler(form);
+    }
 
     return (
         <div className={styles.container}>
@@ -52,17 +60,17 @@ function SignupPage({ isLoading, submitHandler }) {
                     <span onClick={() => setIsVisablePassword((prev) => !prev)}>{isVisablePassword ? <FaRegEyeSlash /> : <FaRegEye />}</span>
                 </div>
 
-                <div className={`${styles.passwords} ${form.password == form.rePassword ? styles.validIn : styles.inValidInp}`}>
+                <div className={`${styles.passwords} ${form.password == rePassword ? styles.validIn : styles.inValidInp}`}>
                     <input
                         type={isVisableRePassword ? 'text' : 'password'}
                         placeholder="re password"
-                        value={form.rePassword}
-                        onChange={(e) => setForm((prev) => ({ ...prev, rePassword: e.target.value }))}
+                        value={rePassword}
+                        onChange={(e) => setRePassword(e.target.value)}
                     />
                     <span onClick={() => setIsVisableRePassword((prev) => !prev)}>{isVisableRePassword ? <FaRegEyeSlash /> : <FaRegEye />}</span>
                 </div>
 
-                <LoaderBtn content="Sign up" onclickHandler={() => submitHandler(form)} isLoading={isLoading} />
+                <LoaderBtn content="Sign up" onclickHandler={handler} isLoading={isLoading} />
 
                 <Link href="/auth/login">I already have an account</Link>
             </div>
