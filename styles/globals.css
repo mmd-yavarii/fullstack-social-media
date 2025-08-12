@@ -4,7 +4,8 @@
     --background: #141416;
     --foreground: #e4e4e4;
     --border: #27282d;
-    --them: #ff3c00;
+    --them: #fd1d1d;
+    --gradient: linear-gradient(105deg, rgba(253, 29, 29, 1) 50%, rgba(252, 157, 69, 1) 100%);
     --inp: #202125;
 }
 
@@ -51,6 +52,7 @@ textarea {
 }
 input::placeholder {
     opacity: 0.7;
+    font-size: 0.98rem;
 }
 
 .blur {
@@ -60,6 +62,16 @@ input::placeholder {
     backdrop-filter: blur(17.3px);
     -webkit-backdrop-filter: blur(17.3px);
     border: 1px solid #ffffff33;
+}
+
+.LoaderBtn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    color: #ffff;
+    background: var(--them);
+    background: var(--gradient);
+    font-weight: 900;
 }
 
 @media (max-width: 600px) {

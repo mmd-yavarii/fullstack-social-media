@@ -1,3 +1,4 @@
+import LoaderBtn from '@/components/elements/LoaderBtn';
 import connectDb from '@/utils/connectDb';
 
 export default function Home() {

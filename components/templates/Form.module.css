@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    height: 80dvh;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    gap: 10px;
+    max-width: 350px;
+}
+.form button {
+    margin-top: 30px;
+}
+.form a {
+    opacity: 0.5;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.passwords {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid var(--border);
+    outline: none;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--inp);
+    color: var(--foreground);
+}
+.passwords input {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+}
+
+.label {
+    width: 100%;
+    max-width: 350px;
+}
+.label p:first-child {
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+.label p:last-child {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-top: 10px;
+    font-weight: 900;
+}
+
+.validIn:focus,
+.validIn input:focus {
+    transition: all 0.3s;
+    color: green;
+}
+.inValidInp:focus,
+.inValidInp input:focus {
+    transition: all 0.3s;
+    color: red;
+}
