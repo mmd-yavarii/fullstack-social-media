@@ -34,6 +34,12 @@ a {
     text-decoration: none;
 }
 
+button {
+    color: inherit;
+    border: none;
+    outline: none;
+}
+
 input,
 textarea {
     border: 1px solid var(--border);
@@ -47,23 +53,6 @@ input::placeholder {
     opacity: 0.7;
 }
 
-.invalidInp:focus {
-    transition: all 0.3s;
-    color: #f72b2a;
-    border-color: #f72a2a48;
-}
-.validInp:focus {
-    transition: all 0.3s;
-    color: green;
-    border-color: #00800064;
-}
-.validInp:focus::placeholder {
-    color: green;
-}
-.invalidInp:focus::placeholder {
-    color: #f72b2a;
-}
-
 .blur {
     /* From https://css.glass */
     background: #00000065;
@@ -73,39 +62,14 @@ input::placeholder {
     border: 1px solid #ffffff33;
 }
 
-.backBtn {
-    direction: ltr;
-    padding: 20px;
-}
-.backBtn button {
-    background-color: transparent;
-    color: var(--forground);
-    border: none;
-    outline: none;
-}
-
-.btn-loader {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    color: #ffff;
-    background-color: var(--them);
-    font-weight: 900;
-    margin-top: 30px;
-    border: none;
-    outline: none;
-}
-
 @media (max-width: 600px) {
     button,
-    session,
     a {
         cursor: default;
     }
 }
 @media (min-width: 600px) {
     button,
-    session,
     a {
         cursor: pointer;
     }

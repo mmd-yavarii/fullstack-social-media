@@ -1,6 +1,6 @@
 import mongoose, { Schema, models, model } from 'mongoose';
 
-const PostSchema = new Schema({
+const StorySchema = new Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
@@ -17,24 +17,24 @@ const PostSchema = new Schema({
         required: true,
     },
 
+    views: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Users',
+        default: [],
+    },
+
     createdAt: {
         type: Date,
-        default: Date.now,
+        default: Date.now(),
         immutable: true,
     },
 
-    likes: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Users',
-        default: [],
-    },
-
-    comments: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Users',
-        default: [],
+    expiresAt: {
+        type: Date,
+        default: () => Date.now() + 24 * 60 * 60 * 1000,
+        immutable: true,
     },
 });
 
-const Posts = models.Posts || model('Posts', PostSchema);
-export default Posts;
+const Stories = models.Stories || model('Stories', StorySchema);
+export default Stories;

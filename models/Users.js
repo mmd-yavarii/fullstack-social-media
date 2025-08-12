@@ -3,8 +3,8 @@ import mongoose, { Schema, models, model } from 'mongoose';
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: true,
         minLength: 3,
+        required: true,
     },
 
     email: {
@@ -17,13 +17,12 @@ const UserSchema = new Schema({
         required: true,
     },
 
-    createdAt: {
-        type: Date,
-        default: () => Date.now(),
-        immutable: true,
+    image: {
+        type: String,
+        required: true,
     },
 
-    fullName: {
+    name: {
         type: String,
         default: '',
     },
@@ -33,18 +32,19 @@ const UserSchema = new Schema({
         default: '',
     },
 
-    image: {
-        type: String,
-        required: true,
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        immutable: true,
     },
 
-    following: {
+    followers: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'Users',
         default: [],
     },
 
-    followers: {
+    followings: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'Users',
         default: [],
@@ -55,8 +55,13 @@ const UserSchema = new Schema({
         ref: 'Posts',
         default: [],
     },
+
+    stories: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Stories',
+        default: [],
+    },
 });
 
 const Users = models.Users || model('Users', UserSchema);
-
 export default Users;

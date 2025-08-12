@@ -1,20 +1,20 @@
 import mongoose, { Schema, models, model } from 'mongoose';
 
-const CommentsSchema = new Schema({
+const CommentSchema = new Schema({
     author: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: 'Users',
         required: true,
     },
 
-    authorusername: {
+    authorUsername: {
         type: String,
         required: true,
     },
 
-    authorimage: {
+    authorImg: {
         type: String,
-        default: '',
+        required: true,
     },
 
     content: {
@@ -24,10 +24,10 @@ const CommentsSchema = new Schema({
 
     createdAt: {
         type: Date,
-        default: Date.now(),
+        default: Date.now,
         immutable: true,
     },
 });
 
-const Comments = models.Comments || model('Comments', CommentsSchema);
+const Comments = models.Comments || model('Comments', CommentSchema);
 export default Comments;

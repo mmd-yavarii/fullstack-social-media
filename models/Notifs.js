@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from 'mongoose';
+import mongoose, { Schema, models, model } from 'mongoose';
 
 const NotifSchema = new Schema({
     receiver: {
@@ -13,21 +13,9 @@ const NotifSchema = new Schema({
         required: true,
     },
 
-    type: {
-        type: String,
-        enum: ['like', 'comment', 'follow'],
-        required: true,
-    },
-
-    post: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Posts',
-        default: null,
-    },
-
     message: {
         type: String,
-        default: '',
+        required: true,
     },
 
     isRead: {
@@ -37,7 +25,7 @@ const NotifSchema = new Schema({
 
     createdAt: {
         type: Date,
-        default: Date.now(),
+        default: Date.now,
         immutable: true,
     },
 });
