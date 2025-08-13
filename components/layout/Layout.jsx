@@ -40,8 +40,8 @@ function Layout({ children }) {
 
                     {/* add new post */}
                     {loggedInUser ? (
-                        <Link replace={true} href="/" className={path == '/' ? styles.selected : null}>
-                            {path == '/' ? <BiSolidMessageSquareAdd /> : <BiMessageSquareAdd />}
+                        <Link replace={true} href="/new-post" className={path == '/new-post' ? styles.selected : null}>
+                            {path == '/new-post' ? <BiSolidMessageSquareAdd /> : <BiMessageSquareAdd />}
                         </Link>
                     ) : (
                         <Link href="/auth/login">

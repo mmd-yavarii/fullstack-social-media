@@ -1,24 +1,13 @@
+import useRedirectInvalidUser from '@/utils/auth';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+
+import { useState } from 'react';
 
 export default function Settings() {
     const [isLoading, setIsLoading] = useState(false);
-    const [loggedInUser, setLoggedInUser] = useState(null);
-    const router = useRouter();
 
-    useEffect(() => {
-        fetch('/api/auth')
-            .then((res) => res.json())
-            .then((res) => {
-                if (!res?.data) {
-                    router.replace('/auth/login');
-                } else {
-                    setLoggedInUser(res.data);
-                }
-            })
-            .catch(() => router.replace('/auth/login'));
-    }, [router]);
+    // redirect invalid users
+    const isUserLoggedIn = useRedirectInvalidUser();
 
     // logout handler
     async function logoutHandler() {
@@ -35,9 +24,13 @@ export default function Settings() {
         setIsLoading(false);
     }
 
+    if (!isUserLoggedIn) return <p className="loaderText">Loading...</p>;
+
     return (
         <div className="settingPage">
             <Link href="/settings/edit-profile">Edit Informations</Link>
+            <Link href="/settings">Submitting a request for a blue verification</Link>
+
             <button onClick={logoutHandler}>{isLoading ? 'Loading...' : 'Logout'}</button>
         </div>
     );

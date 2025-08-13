@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import { IoMdArrowRoundBack } from 'react-icons/io';
+import { TbRosetteDiscountCheckFilled } from 'react-icons/tb';
 
 import styles from './UsersProfile.module.css';
 import { useEffect, useState } from 'react';
@@ -31,7 +32,10 @@ function UsersProfile({ info, posts }) {
                         <button onClick={() => routter.back()}>
                             <IoMdArrowRoundBack size="1.3rem" />
                         </button>
-                        <p>{info.username}</p>
+                        <p>
+                            {info.blueTick && <TbRosetteDiscountCheckFilled color="#1c96e8" />}
+                            <span>{info.username}</span>
+                        </p>
                     </div>
 
                     <div className={styles.profileImage}>

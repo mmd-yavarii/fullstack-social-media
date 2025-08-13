@@ -16,6 +16,15 @@
     top: 0;
 }
 
+.nav p {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    gap: 6px;
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
 .nav button {
     background-color: transparent;
 }

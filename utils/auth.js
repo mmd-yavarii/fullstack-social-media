@@ -2,6 +2,9 @@ import { verify } from 'jsonwebtoken';
 import connectDb from './connectDb';
 import { compare, hash } from 'bcryptjs';
 
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
 // regexes
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordRegex = /^[A-Za-z\d!@#$%^&*()]{8,}$/;
@@ -38,6 +41,27 @@ async function hashPassword(password) {
 async function hashedPassValid(password, hashed) {
     const result = await compare(password, hashed);
     return result;
+}
+
+// cutom hook for redirect invalid uers
+export default function useRedirectInvalidUser() {
+    const [loggedInUser, setLoggedInUser] = useState(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        fetch('/api/auth')
+            .then((res) => res.json())
+            .then((res) => {
+                if (!res?.data) {
+                    router.replace('/auth/login');
+                } else {
+                    setLoggedInUser(res.data);
+                }
+            })
+            .catch(() => router.replace('/auth/login'));
+    }, [router]);
+
+    return loggedInUser;
 }
 
 export { verifyToken, emailRegex, passwordRegex, usernameRegex, connect_db_in_api, hashPassword, hashedPassValid };

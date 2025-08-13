@@ -17,6 +17,11 @@ const PostSchema = new Schema({
         required: true,
     },
 
+    content: {
+        type: String,
+        required: true,
+    },
+
     createdAt: {
         type: Date,
         default: Date.now,
@@ -30,6 +35,12 @@ const PostSchema = new Schema({
     },
 
     comments: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Users',
+        default: [],
+    },
+
+    taggedUsers: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'Users',
         default: [],
