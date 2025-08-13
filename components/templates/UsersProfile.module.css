@@ -98,8 +98,21 @@
 }
 
 /* show post or other things */
-/* .showPostOrFollow {
-} */
+.showPostOrFollow {
+    padding: 10px;
+    padding-top: 20px;
+}
+.showPostOrFollow > * {
+    background-color: var(--inp);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.showPostOrFollow > p {
+    text-align: center;
+    margin-top: 20px;
+    text-align: center;
+    background-color: transparent;
+}
 
 @media (min-width: 800px) {
     .page {

@@ -34,8 +34,8 @@ function Layout({ children }) {
                     </Link>
 
                     {/* explore */}
-                    <Link replace={true} href="/" className={path == '/' ? styles.selected : null}>
-                        {path == '/' ? <IoSearchSharp /> : <IoSearchOutline />}
+                    <Link replace={true} href="/explore" className={path == '/explore' ? styles.selected : null}>
+                        {path == '/explore' ? <IoSearchSharp /> : <IoSearchOutline />}
                     </Link>
 
                     {/* add new post */}

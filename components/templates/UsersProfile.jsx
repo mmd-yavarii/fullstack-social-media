@@ -11,12 +11,53 @@ import styles from './UsersProfile.module.css';
 import { useEffect, useState } from 'react';
 import LoaderBtn from '../elements/LoaderBtn';
 import Link from 'next/link';
+import UserCard from '../modules/UserCard';
 
 function UsersProfile({ info, posts }) {
     const routter = useRouter();
     const [myOwnInfo, setMyOwnInfo] = useState([]);
     const [session, setSession] = useState('posts');
 
+    const [followers, setFollowers] = useState([]);
+    const [followings, setFollowings] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // get followers
+    async function fetchFollowInfo(which) {
+        const ids = which === 'followers' ? info.followers : which === 'followings' ? info.followings : [];
+
+        if (!ids || !ids.length) return;
+        setIsLoading(true);
+        try {
+            const response = await fetch('/api/explore/find-user', {
+                method: 'POST',
+                body: JSON.stringify({ idList: ids }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const res = await response.json();
+            const users = res.data || [];
+
+            if (which === 'followers') setFollowers(users);
+            else if (which === 'followings') setFollowings(users);
+        } catch (err) {
+            console.error('Error fetching users:', err);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        if (session === 'followers' && !followers.length) {
+            fetchFollowInfo('followers');
+        } else if (session === 'followings' && !followings.length) {
+            fetchFollowInfo('followings');
+        }
+    }, [session]);
+
+    //  check user token
     useEffect(() => {
         fetch('/api/auth')
             .then((res) => res.json())
@@ -88,25 +129,31 @@ function UsersProfile({ info, posts }) {
             </div>
 
             {/* show posts / followers / followings */}
-            <div className={styles.showPostOrFollow}>
-                {session == 'posts' ? (
-                    posts.length ? (
-                        posts.map((i) => <p>{i.content}</p>)
-                    ) : (
-                        <p>there's no posts</p>
-                    )
-                ) : session == 'followers' ? (
-                    posts.length ? (
-                        followers.map((i) => <p>{i.username}</p>)
-                    ) : (
-                        <p>there's no followers</p>
-                    )
-                ) : session == 'followings' && posts.length ? (
-                    followings.map((i) => <p>{i.username}</p>)
-                ) : (
-                    <p>there's no followings</p>
-                )}
-            </div>
+            {isLoading ? (
+                <p className="loadingTxt">Loading...</p>
+            ) : (
+                <div className={styles.showPostOrFollow}>
+                    {session === 'posts' ? (
+                        posts.length ? (
+                            posts.map((i) => <p key={i._id}>{i.content}</p>)
+                        ) : (
+                            <p>there's no posts</p>
+                        )
+                    ) : session === 'followers' ? (
+                        followers.length ? (
+                            followers.map((i) => <UserCard {...i} key={i.id} />)
+                        ) : (
+                            <p>there's no followers</p>
+                        )
+                    ) : session === 'followings' ? (
+                        followings.length ? (
+                            followings.map((i) => <UserCard {...i} key={i.id} />)
+                        ) : (
+                            <p>there's no followings</p>
+                        )
+                    ) : null}
+                </div>
+            )}
         </div>
     );
 }

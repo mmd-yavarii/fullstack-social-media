@@ -16,7 +16,7 @@ function SearchInp({ onclickCardsHandler = undefined }) {
             async function getUsersSearched() {
                 if (!searchValue) return setSearched([]);
                 setIsLoading(true);
-                const response = await fetch('/api/explore/search-user', {
+                const response = await fetch('/api/explore/find-user', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username: searchValue }),

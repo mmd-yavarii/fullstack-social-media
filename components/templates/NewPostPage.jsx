@@ -6,7 +6,7 @@ import SearchInp from '../elements/SearchInp';
 import { TbRosetteDiscountCheckFilled } from 'react-icons/tb';
 import { GoTrash } from 'react-icons/go';
 
-function NewPostPage({ user, handler }) {
+function NewPostPage({ user, handler, isLoading }) {
     const [form, setForm] = useState({
         author: user._id,
         authorUsername: user.username,
@@ -79,7 +79,7 @@ function NewPostPage({ user, handler }) {
                 </div>
             </div>
 
-            <LoaderBtn content="Add Post" isLoading={false} onclickHandler={() => handler(form)} />
+            <LoaderBtn content="Add Post" isLoading={isLoading} onclickHandler={() => handler(form, setForm)} />
         </div>
     );
 }

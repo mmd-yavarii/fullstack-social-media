@@ -89,6 +89,11 @@ input::placeholder {
     font-weight: 900;
 }
 
+.loadingTxt {
+    text-align: center;
+    margin-top: 40px;
+}
+
 .pageTitle {
     border-bottom: 1px solid var(--border);
     font-weight: 900;
